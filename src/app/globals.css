@@ -1,26 +1,571 @@
 @import "tailwindcss";
 
+/* ============================================
+   DESIGN SYSTEM: Societas Jesu (Dòng Tên)
+   Inspired by Ignatian spirituality, 
+   Jesuit academic tradition, and IHS seal.
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* — Jesuit Core Palette — */
+  --parchment: #F7F4EE;
+  --parchment-warm: #EDE8DF;
+  --parchment-deep: #E4DDD2;
+
+  /* Ink — deep charcoal-navy, not pure black */
+  --ink: #1C1917;
+  --ink-secondary: #3D3730;
+  --ink-muted: #6B6459;
+  --ink-subtle: #8E8679;
+
+  /* Jesuit Black — the defining color of Dòng Tên */
+  --jesuit-black: #1C1917;
+  --jesuit-black-warm: #292524;
+
+  /* Burgundy — ecclesiastical red, used in Catholic vestments */
+  --burgundy: #7C1D28;
+  --burgundy-rich: #6B1621;
+  --burgundy-light: #93283A;
+
+  /* Gold — from the IHS seal, for accents & active states */
+  --gold: #C9A844;
+  --gold-bright: #D4B44F;
+  --gold-muted: #A68C38;
+  --gold-pale: rgba(201, 168, 68, 0.12);
+
+  /* — UI Neutrals — */
+  --border: #D6D0C4;
+  --border-subtle: #E8E3DA;
+  --surface: #FFFFFF;
+  --surface-warm: #F2EEE6;
+
+  /* — Typography — */
+  --font-heading: var(--font-libre-baskerville), 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-lora), 'Lora', 'Georgia', serif;
+
+  /* — Layout — */
+  --content-max: 720px;
+  --sidebar-w: 280px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-parchment: var(--parchment);
+  --color-parchment-warm: var(--parchment-warm);
+  --color-parchment-deep: var(--parchment-deep);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-jesuit: var(--jesuit-black);
+  --color-jesuit-warm: var(--jesuit-black-warm);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-rich: var(--burgundy-rich);
+  --color-burgundy-light: var(--burgundy-light);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-muted: var(--gold-muted);
+  --color-gold-pale: var(--gold-pale);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   BASE
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--gold-pale);
+  color: var(--ink);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--parchment-warm); }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-subtle); }
+
+/* ============================================
+   ARTICLE PROSE
+   ============================================ */
+
+/* Title */
+.prose-article h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--jesuit-black);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Section headings */
+.prose-article h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--burgundy);
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.prose-article h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* Sub-headings */
+.prose-article h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink-secondary);
+  margin-top: 2rem;
+  margin-bottom: 0.875rem;
+  padding-left: 0.875rem;
+  border-left: 3px solid var(--gold);
+}
+
+/* Paragraphs */
+.prose-article p {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+/* Drop cap for first paragraph after first h2 */
+.prose-article .drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-unifraktur), var(--font-heading);
+  font-size: 4.5em;
+  line-height: 0.7;
+  padding-right: 0.15em;
+  padding-top: 0.1em;
+  color: var(--burgundy);
+  font-weight: 400;
+}
+
+/* Blockquotes */
+.prose-article blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.75rem;
+  border-left: 3px solid var(--gold);
+  background: var(--surface-warm);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--ink-secondary);
+  position: relative;
+}
+
+.prose-article blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  font-size: 3.5rem;
+  font-family: var(--font-heading);
+  color: var(--gold);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.prose-article blockquote p {
+  text-align: left;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* Lists */
+.prose-article ul {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.prose-article ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.625rem;
+  line-height: 1.75;
+}
+
+.prose-article ul li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.7em;
+  top: 0.35em;
+}
+
+.prose-article ol {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  counter-reset: ref;
+  list-style: none;
+}
+
+.prose-article ol li {
+  position: relative;
+  padding-left: 2.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+  counter-increment: ref;
+  font-size: 0.92rem;
+}
+
+.prose-article ol li::before {
+  content: counter(ref) '.';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--burgundy);
+  font-size: 0.9em;
+  min-width: 1.75rem;
+}
+
+/* Citations */
+.cite {
+  position: relative;
+  font-size: 0.72em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--burgundy);
+  font-weight: 700;
+  cursor: help;
+  padding: 0.1em 0.3em;
+  margin-left: 0.1em;
+  border-radius: 4px;
+  background-color: rgba(124, 29, 40, 0.05);
+  border: 1px solid rgba(124, 29, 40, 0.1);
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.cite:hover {
+  background-color: var(--burgundy);
+  color: var(--parchment);
+}
+
+.cite[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--jesuit-black);
+  color: var(--parchment);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: normal;
+  width: max-content;
+  max-width: 250px;
+  text-align: left;
+  z-index: 50;
+  font-family: var(--font-body);
+  font-weight: 400;
+  pointer-events: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.cite[title]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--jesuit-black) transparent transparent transparent;
+  pointer-events: none;
+}
+
+/* Strong / Emphasis */
+.prose-article strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.prose-article em {
+  color: var(--ink-secondary);
+}
+
+/* Table */
+.prose-article table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.prose-article thead {
+  background: var(--jesuit-black);
+  color: var(--parchment);
+}
+
+.prose-article th {
+  padding: 0.75rem 0.875rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--gold);
+}
+
+.prose-article td {
+  padding: 0.7rem 0.875rem;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.prose-article tbody tr:nth-child(even) {
+  background-color: var(--surface-warm);
+}
+
+.prose-article tbody tr:hover {
+  background-color: var(--gold-pale);
+}
+
+/* Links in references */
+.prose-article a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  transition: all 0.2s;
+}
+
+.prose-article a:hover {
+  color: var(--burgundy-light);
+  text-decoration-color: var(--burgundy-light);
+}
+
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================ */
+
+.toc-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.toc-sidebar::-webkit-scrollbar { width: 4px; }
+.toc-sidebar::-webkit-scrollbar-track { background: transparent; }
+.toc-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.toc-link {
+  display: block;
+  padding: 0.4rem 0.875rem;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+  line-height: 1.45;
+}
+
+.toc-link:hover {
+  color: var(--burgundy);
+  border-left-color: var(--border);
+  background-color: rgba(124, 29, 40, 0.03);
+}
+
+.toc-link.active {
+  color: var(--burgundy);
+  font-weight: 600;
+  border-left-color: var(--gold);
+  background-color: var(--gold-pale);
+}
+
+.toc-link-sub {
+  padding-left: 1.75rem;
+  font-size: 0.775rem;
+}
+
+/* ============================================
+   DECORATIVE
+   ============================================ */
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5rem 0;
+  gap: 0.75rem;
+  opacity: 0.4;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* ============================================
+   RESPONSIVE & MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 1024px) {
+  body { font-size: 17px; }
+  .prose-article h1 { font-size: 1.6rem; }
+  .prose-article h2 { font-size: 1.25rem; }
+  .prose-article h3 { font-size: 1.05rem; }
+  :root { --sidebar-w: 240px; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; line-height: 1.75; }
+  .prose-article h1 { font-size: 1.35rem; }
+  .prose-article h2 { font-size: 1.15rem; margin-top: 2rem; }
+  .prose-article h3 { font-size: 1rem; }
+  
+  .prose-article .drop-cap::first-letter {
+    font-size: 3.8em;
+    padding-right: 0.12em;
+  }
+  
+  .prose-article blockquote {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.95em;
+  }
+  
+  /* Hero adjustments for mobile */
+  .hero-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-meta {
+    font-size: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Table responsiveness hint */
+  .overflow-x-auto {
+    position: relative;
+  }
+  
+  .overflow-x-auto::after {
+    content: '← Trượt để xem thêm →';
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: var(--ink-subtle);
+    margin-top: 8px;
+    font-style: italic;
+  }
+}
+/* ============================================
+   DARK MODE (Monastic)
+   ============================================ */
+.dark {
+  --parchment: #181615;
+  --parchment-warm: #1F1C1B;
+  --parchment-deep: #2A2726;
+  
+  --ink: #D4D0C8;
+  --ink-secondary: #A39E93;
+  --ink-muted: #7A756B;
+  --ink-subtle: #5C5851;
+  
+  --jesuit-black: #E8E5DF; /* Invert header colors slightly if needed, but headers use --jesuit-black, so we swap it to light */
+  --jesuit-black-warm: #E0DDD6;
+  
+  --burgundy: #D25E6B; /* Softer, brighter red for dark mode */
+  --burgundy-rich: #E87A87;
+  --burgundy-light: #F09AA5;
+  
+  --gold: #DDB754;
+  --gold-bright: #E8C872;
+  --gold-muted: #B89842;
+  --gold-pale: rgba(221, 183, 84, 0.12);
+  
+  --border: #3D3936;
+  --border-subtle: #2A2726;
+  --surface: #1C1A19;
+  --surface-warm: #242120;
+}
+
+.dark header, .dark footer {
+  background-color: #121110;
+  color: #D4D0C8;
+}
+
+/* ============================================
+   PRINT CSS
+   ============================================ */
+@media print {
+  header, footer, aside, button, #toc-toggle, .reading-progress, .ornament, .theme-toggle {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  .prose-article h1, .prose-article h2, .prose-article h3 {
+    color: black;
+    page-break-after: avoid;
+    border: none;
+  }
+  .prose-article h2::after { display: none; }
+  .prose-article p, .prose-article li { color: #333; orphans: 3; widows: 3; }
+  .prose-article a { text-decoration: none; color: black; }
+  .prose-article table { font-size: 10pt; border-collapse: collapse; }
+  .prose-article th { background: #eee; color: black; border: 1px solid #ccc; }
+  .prose-article td { border: 1px solid #ccc; }
+  .cite { background: none; border: none; padding: 0; color: black; }
+  @page { margin: 2cm; }
 }
