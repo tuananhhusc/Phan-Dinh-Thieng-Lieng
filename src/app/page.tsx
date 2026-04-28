@@ -37,7 +37,7 @@ export default function Home() {
         {/* Hero Image Section */}
         <div className="w-full relative h-[40vh] sm:h-[50vh] md:h-[60vh] bg-jesuit overflow-hidden border-b-[3px] border-gold">
           <Image
-            src="/hero-image.png"
+            src="/Phan-Dinh-Thieng-Lieng/hero-image.png"
             alt="St. Ignatius of Loyola writing the Spiritual Exercises"
             fill
             className="object-cover object-top opacity-85 hover:opacity-100 transition-opacity duration-700"
