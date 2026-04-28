@@ -25,6 +25,7 @@ const unifraktur = UnifrakturMaguntia({
 const BASE_PATH = "/Phan-Dinh-Thieng-Lieng";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tuananhhusc.github.io/Phan-Dinh-Thieng-Lieng"),
   title: "Phân Định Thiêng Liêng — Báo Cáo Nghiên Cứu Chuyên Sâu về Linh Đạo I-nhã",
   description:
     "Khám phá chiều sâu của Phân Định Thiêng Liêng: Nền tảng thần học, tiến trình tâm linh và ứng dụng thực tiễn dựa trên Linh thao của Thánh Inhaxiô Loyola và giáo huấn của ĐTC Phanxicô.",
